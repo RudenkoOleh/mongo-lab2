@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/vendor/autoload.php";
 include("connection.php");
+echo "<script src='./script.js'></script>";
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_GET["nurse"])) {
@@ -10,14 +11,17 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         if (count($result) == 0) {
             echo("<p>No such ward.</p>");
         } else {
-
             echo "<table border='1'><thead><th>Ward</th></thead><tbody>";
             foreach ($result as $ward) {
                 printf("<tr><td>%s</td></tr>", $ward);
             }
             echo "</tbody></table>";
         }
+        echo "<div id='Div'></div>";
+        echo "<script>showFromLocalStorage1('$selectedNurse')</script>";
         
+        $json = json_encode($result);
+        echo "<script>saveToLocalStorage('$selectedNurse', $json)</script>";
     }
 
     if (isset($_GET["department"]) && isset($_GET["shift"])) {
@@ -55,8 +59,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             }
 
             echo "</tbody></table>";
-
         }
+
+        echo "<div id='Div'></div>";
+        echo "<script>showFromLocalStorage3('$selectedDepartment,$selectedShift')</script>";
+
+        $json = json_encode($shifts);
+        echo "<script>saveToLocalStorage('$selectedDepartment,$selectedShift', $json)</script>";
 
     } elseif(isset($_GET["department"])){ 
         $selectedDepartment = $_GET["department"];
@@ -72,5 +81,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             }
             echo "</tbody></table>";
         }
+        echo "<div id='Div'></div>";
+        echo "<script>showFromLocalStorage2('$selectedDepartment')</script>";
+
+        $json = json_encode($result);
+        echo "<script>saveToLocalStorage('$selectedDepartment', $json)</script>";
     }
 }
