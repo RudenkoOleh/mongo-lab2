@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="get" action="">
+    <form method="get" action="controller.php">
         <h2>Перелік палат в яких чергує вибрана медсестра</h2>
         <label for="nurse">Choose a Nurse:</label>
         <select name="nurse" id="nurse">
@@ -22,7 +22,7 @@
         <input type="submit" value="Submit">
     </form>
 
-    <form method="get" action="">
+    <form method="get" action="controller.php">
         <h2>Медсестери, які чергували в зазначеному відділенні</h2>
         <label for="department">Choose a department:</label>
         <select name="department" id="department">
@@ -33,7 +33,7 @@
         <input type="submit" value="Submit">
     </form>
 
-    <form method="get" action="submit_workers.php">
+    <form method="get" action="controller.php">
         <h2>Всі чергування у зазначену зміну в зазначеному відділенні</h2>
         <label for="department">Choose a department:</label>
         <select name="department" id="department">
